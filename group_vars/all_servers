@@ -1,3 +1,0 @@
----
-ansible_ssh_public_key_file : /home/master/.ssh/id_rsa.pub
-
