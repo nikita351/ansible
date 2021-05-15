@@ -1,10 +1,2 @@
-[servers_prod]
 apache_test  ansible_host=172.31.42.233  ansible_user=ubuntu
 
-[servers_staging]
-client2  ansible_host=172.31.47.83  ansible_user=ubuntu
-
-#[all_servers:children]
-#servers_prod
-#servers_staging
-#
