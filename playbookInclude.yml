@@ -1,0 +1,19 @@
+---
+
+- name: create somthing
+  hosts: all
+  become: yes
+
+  vars:
+          mytext: 'hello nick'
+
+  tasks:
+          - name: ping test
+            ping:
+
+          - name: create folders
+            include: create_folders.yml
+
+          - name: create files
+            include: create_files.yml mytext="ya zaebalsya"
+

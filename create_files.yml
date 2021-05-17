@@ -1,0 +1,14 @@
+---
+- name: create file1
+  copy:
+          dest: /home/client1/secret/file1.txt
+          content: |
+                  text line1, in file1
+                  text line2, {{ mytext }}
+
+- name: create file2
+  copy:
+          dest: /home/client2/secret/file1.txt
+          content: |
+                  text line1, in file1
+                  text line2, {{ mytext }}

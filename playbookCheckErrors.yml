@@ -1,0 +1,26 @@
+---
+
+- name: find errors
+  hosts: all
+  any_errors_fatal: true
+  become: yes
+
+  tasks:
+          - name: number 1
+            apt: name=treee state=latest
+            ignore_errors: yes
+
+            #        - name: number 2
+            #          shell: echo hello world
+            #          register: results
+            #          failed_when: results.rc == 0
+            #          failed_when: "'world' in results.stdout"
+            #
+            #        - debug:
+            #                var: results
+            #
+
+          - name: number 3
+            shell: cat /home/client1/myfile.txt
+            register: results
+
