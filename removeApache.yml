@@ -8,6 +8,6 @@
       name: "1. Uninstall HTTPD/Apache"
       tags: uninstall_apache
       apt:
-        name: httpd
+        name: apache2
         autoremove: yes
         state: absent
