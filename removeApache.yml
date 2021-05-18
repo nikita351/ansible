@@ -1,0 +1,13 @@
+
+--- 
+- name: Remove Apache
+  hosts: all
+  become: yes
+  tasks:
+    - 
+      name: "1. Uninstall HTTPD/Apache"
+      tags: uninstall_apache
+      apt:
+        name: httpd
+        autoremove: yes
+        state: absent
