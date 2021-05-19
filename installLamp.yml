@@ -1,0 +1,47 @@
+---
+- name: Install apache and index.html
+  hosts: all
+  become: yes
+
+  vars:
+          source_file: ./index.html
+          destin_folder: /var/www/html/
+
+  tasks:
+
+        - name: Update APT package manager repositories cache
+          apt: update_cache=yes
+   
+        - name: Upgrade installed packages
+          apt: upgrade=safe
+        
+        - name: Install Git VCS
+          apt: name=git state=latest
+
+        - name: Check linux version
+          debug: var=ansible_os_family
+        
+        - name: Install Apache
+          apt: name=apache2 state=latest
+
+        - name: Install MySQL DB server
+          apt: name=mysql-server state=latest
+
+        - name: Add PHP 7 PPA repository
+          apt_repository:
+                  repo: 'ppa:ondrej/php'
+
+        - name: Install PHP CLI
+          apt: name=php7.1-cli state=latest
+          
+        - name: Start apache and make it enable
+          service: name=apache2 state=started enabled=yes          
+
+        - name: Copy home page to servers
+          copy: src={{ source_file }} dest={{ destin_folder }} mode=0555
+          notify: 
+            - Restart apache Debian
+
+  handlers:
+        - name: Restart apache Debian
+          service: name=apache2 state=restarted  
